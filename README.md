@@ -15,8 +15,6 @@ OSX
 $ brew install libxmlsec1 libxml2
 ```
 
-[![Build Status](https://travis-ci.org/RobotsAndPencils/go-saml.svg?branch=master)](https://travis-ci.org/RobotsAndPencils/go-saml)
-
 A just good enough SAML client library written in Go. This library is by no means complete and has been developed
 to solve several specific integration efforts. However, it's a start, and it would be great to see
 it evolve into a more fleshed out implemention.
@@ -205,6 +203,9 @@ b64XML, err := authnResponse.EncodedSignedString("/path/to/private.key")
 
 
 ### Contributing
+
+This repo has been forked for a 'fixed' version dependency.
+To contribute please find the origional repo [Here](https://github.com/RobotsAndPencils/go-saml)
 
 Would love any contributions you having including better documentation, tests, or more robust functionality.
 
