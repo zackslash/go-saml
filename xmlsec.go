@@ -70,11 +70,41 @@ func VerifyResponseSignature(xml string, publicCertPath string) error {
 	return verify(xml, publicCertPath, xmlResponseID)
 }
 
+// VerifyResponseSignatureWithCertString verify signature of a SAML 2.0 Response document
+// `publicCert` must be a certificate string in PEM format
+func VerifyResponseSignatureWithCertString(xml, publicCert string) error {
+	certInput, err := ioutil.TempFile(os.TempDir(), "tmpcr")
+	if err != nil {
+		return err
+	}
+
+	certInput.WriteString(publicCert)
+	certInput.Close()
+	result := verify(xml, certInput.Name(), xmlRequestID)
+	deleteTempFile(certInput.Name())
+	return result
+}
+
 // VerifyRequestSignature verify signature of a SAML 2.0 AuthnRequest document
 // `publicCertPath` must be a path on the filesystem, xmlsec1 is run out of process
 // through `exec`
 func VerifyRequestSignature(xml string, publicCertPath string) error {
 	return verify(xml, publicCertPath, xmlRequestID)
+}
+
+// VerifyRequestSignatureWithCertString verify signature of a SAML 2.0 AuthnRequest document
+// `publicCert` must be a certificate string in PEM format
+func VerifyRequestSignatureWithCertString(xml, publicCert string) error {
+	certInput, err := ioutil.TempFile(os.TempDir(), "tmpcr")
+	if err != nil {
+		return err
+	}
+
+	certInput.WriteString(publicCert)
+	certInput.Close()
+	result := verify(xml, certInput.Name(), xmlRequestID)
+	deleteTempFile(certInput.Name())
+	return result
 }
 
 func verify(xml string, publicCertPath string, id string) error {
