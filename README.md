@@ -1,6 +1,22 @@
 go-saml
 ======
 
+Forked from RobotsAndPencils/go-saml
+
+Requires LibXML:
+
+Linux
+```
+$ apt-get install libxml2-dev libxmlsec1-dev
+$ go get github.com/crewjam/go-xmlsec
+```
+
+OSX
+```
+$ brew install libxmlsec1 libxml2
+$ go get github.com/crewjam/go-xmlsec
+```
+
 [![Build Status](https://travis-ci.org/RobotsAndPencils/go-saml.svg?branch=master)](https://travis-ci.org/RobotsAndPencils/go-saml)
 
 A just good enough SAML client library written in Go. This library is by no means complete and has been developed
@@ -21,7 +37,7 @@ The library supports:
 Installation
 ------------
 
-    $ go get github.com/RobotsAndPencils/go-saml
+    $ go get github.com/zackslash/go-saml
 
 Here's a convenient way to generate a certificate:
 
